@@ -6,7 +6,7 @@ namespace NBody2D.Core
 	{
 		public Rectangle Bounds { get; set; }
 		public Body Body { get; private set; }
-		public float Theta { get; set; } = 0.5f;
+		public float Theta { get; set; } = 0.8f;
 
 		public delegate void QuadTreeAction(QuadTree obj);
 

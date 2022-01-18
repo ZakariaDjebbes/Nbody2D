@@ -41,17 +41,17 @@ internal class Body
 
 	public void Attract(Body other)
 	{
-		float soft = 3E4f;      // softening parameter
+		var soft = 500;      // softening parameter
 		var distance = other.Position - Position;
 		var dist = MathF.Sqrt(distance.X * distance.X + distance.Y * distance.Y);
-		var force = (Gravity * Mass * other.Mass) / (dist * dist + MathF.Pow(soft, 2));
+		var force = (Gravity * Mass * other.Mass) / (dist * dist + soft * soft);
 		Force += force * distance / dist;
 	}
 
-	public void Draw(RenderWindow window, float scale)
+	public void Draw(RenderWindow window)
 	{
-		circleShape.Radius = 1;
-		circleShape.Position = new Vector2f(Position.X.Map(-scale, scale, 0, window.Size.X), Position.Y.Map(-scale, scale, 0, window.Size.Y));
+		circleShape.Radius = Mass.Map(1, 2000, 1.50f, 5);
+		circleShape.Position = Position;
 		circleShape.FillColor = Color;
 
 		window.Draw(circleShape);
